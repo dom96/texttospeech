@@ -4,6 +4,8 @@
 import osproc, httpclient, xmltree, options, asyncdispatch, json, strutils
 import base64, os, hashes
 
+export httpclient.`==`
+
 type
   GCloudError* = object of Exception
 

@@ -30,19 +30,21 @@ the ``gcloud`` utility is in your PATH.
 You may then compile and run the following:
 
 ```nim
+import os
+
 import texttospeech
 
 # Initialise the client:
 let client = newTextToSpeechClient()
 
 # Synthesize a some text:
-let filename = client.synthesizeToFolder("Hello World!", getCurrentDir())
+let filename = client.synthesizeToFolder("Hello World!", os.getCurrentDir())
 echo("Saved in ", filename) # Open the file in your favourite music player.
 
 # Modifying the options:
 echo client.synthesizeToFolder(
   "Nim is the best programming language!",
-  getCurrentDir(),
+  os.getCurrentDir(),
   voice=initVoiceSelectionParams(name=some("en-GB-Wavenet-A")),
   audioConfig=initAudioConfig(audioEncoding=OGG_OPUS, pitch = -5)
 )
