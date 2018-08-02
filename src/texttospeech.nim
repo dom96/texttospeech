@@ -66,7 +66,7 @@ proc toRequestData(
 ): JsonNode =
   result = newJObject()
   # SynthesisInput
-  if input is string:
+  when input is string:
     result["input"] = %{
       "text": %input
     }
@@ -157,14 +157,15 @@ proc synthesizeToFolder*(
   ##
   ## Returns the filename of the created file.
   let audioContent = await synthesize(client, input, voice, audioConfig)
+  let hashed = $hash($input & voice.name.get(""))
   result = folder / "tts" & (
     case audioConfig.audioEncoding
     of LINEAR16:
-      hash(input).`$`.addFileExt("wav")
+      hashed.addFileExt("wav")
     of MP3:
-      hash(input).`$`.addFileExt("mp3")
+      hashed.addFileExt("mp3")
     of OGG_OPUS:
-      hash(input).`$`.addFileExt("ogg")
+      hashed.addFileExt("ogg")
   )
   writeFile(result, audioContent)
 
