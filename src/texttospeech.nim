@@ -97,12 +97,12 @@ proc toRequestData(
 
 
 proc initVoiceSelectionParams*(
-  languageCode="en-GB", ssmlGender=MALE, name=none[string]()
+  languageCode="en-GB", ssmlGender=MALE, name=""
 ): VoiceSelectionParams =
   VoiceSelectionParams(
     languageCode: languageCode,
     ssmlGender: ssmlGender,
-    name: name
+    name: if name == "": none[string]() else: some(name)
   )
 
 proc initAudioConfig*(
@@ -175,6 +175,6 @@ when isMainModule:
     client.synthesizeToFolder(
       "Have you ever felt the cold, determined, voice of a machine?",
       getCurrentDir(),
-      voice=initVoiceSelectionParams(name=some("en-GB-Wavenet-D")),
+      voice=initVoiceSelectionParams(name="en-GB-Wavenet-D"),
       audioConfig=initAudioConfig(audioEncoding=OGG_OPUS, pitch=20))
   echo filename

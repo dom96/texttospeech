@@ -45,7 +45,7 @@ echo("Saved in ", filename) # Open the file in your favourite music player.
 echo client.synthesizeToFolder(
   "Nim is the best programming language!",
   os.getCurrentDir(),
-  voice=initVoiceSelectionParams(name=some("en-GB-Wavenet-A")),
+  voice=initVoiceSelectionParams(name="en-GB-Wavenet-A"),
   audioConfig=initAudioConfig(audioEncoding=OGG_OPUS, pitch = -5)
 )
 ```
