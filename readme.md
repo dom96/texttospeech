@@ -30,7 +30,7 @@ the ``gcloud`` utility is in your PATH.
 You may then compile and run the following:
 
 ```nim
-import os
+import os, options
 
 import texttospeech
 
